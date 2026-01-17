@@ -30,10 +30,10 @@ crash.log
 crash.*.log
 
 # Variable files with sensitive data
-*.tfvars
-*.tfvars.json
-**/*.tfvars
-**/*.tfvars.json
+#*.tfvars
+#*.tfvars.json
+#**/*.tfvars
+#**/*.tfvars.json
 
 # Plan output
 *.plan
