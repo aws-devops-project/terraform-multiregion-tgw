@@ -1,0 +1,54 @@
+# Terraform state files - ALL PATHS
+*.tfstate
+*.tfstate.*
+**/*.tfstate
+**/*.tfstate.*
+terraform.tfstate.backup
+**/terraform.tfstate.backup
+
+# State lock files
+*.lock
+*.lock.*
+**/*.lock
+**/*.lock.*
+.terraform.tfstate.lock.info
+
+# Private key files
+*.pem
+**/*.pem
+*.key
+*.ppk
+
+# Local Terraform directories
+.terraform/
+**/.terraform/
+.terraform.lock.hcl
+**/.terraform.lock.hcl
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Variable files with sensitive data
+*.tfvars
+*.tfvars.json
+**/*.tfvars
+**/*.tfvars.json
+
+# Plan output
+*.plan
+tfplan
+plan.out
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.iml
