@@ -11,6 +11,9 @@ dev/terraform.tfstate
 dev/terraform.tfstate.backup
 dev/*.tfstate
 dev/*.tfstate.*
+# Dev local/sensitive files
+dev/key.json
+dev/broken.tfstate
 # Prod state
 prod/terraform.tfstate
 prod/terraform.tfstate.backup
