@@ -1,0 +1,52 @@
+name: Terraform Plan - Dev
+#triggered manually via workflow_dispatch, which allows us to runs-on: ubuntu-lates defaults:
+           
+ 
+
+on:
+  workflow_dispatch: {}
+
+# on:
+#     push:
+#       branches:
+#         - dev
+#       paths:
+#         - 'dev/**' # Trigger only when files in the dev directory are changed
+
+jobs:
+    terraform-plan:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: ./dev
+                shell: bash
+
+        permissions:
+            id-token: write
+            contents: read
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Configure AWS Credentials (OIDC)
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                aws-region: eu-west-2
+                role-to-assume: arn:aws:iam::590183931718:role/githubaction
+            
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform init
+              run: terraform init
+        #     working-directory: ./dev
+
+            - name: Terraform validate
+              run: terraform validate
+
+            - name: Terraform plan
+              run: terraform plan 
+
+
+            
