@@ -1,0 +1,5 @@
+{
+  "LockID": {
+    "S": "terraform-statelock-backend-bucket/prod/london/terraform.tfstate-md5"
+  }
+}

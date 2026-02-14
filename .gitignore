@@ -1,0 +1,20 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+# Root state
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate
+*.tfstate.*
+# Dev state
+dev/terraform.tfstate
+dev/terraform.tfstate.backup
+dev/*.tfstate
+dev/*.tfstate.*
+# Prod state
+prod/terraform.tfstate
+prod/terraform.tfstate.backup
+prod/*.tfstate
+prod/*.tfstate.*
+# Local temp files
+del-versions-london.json
