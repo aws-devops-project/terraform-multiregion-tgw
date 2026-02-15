@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "terraform_state_dr" {
-  provider = aws.dr
-  bucket   = "terraform-statelock-backend-bucket-dr"
+  provider      = aws.dr
+  bucket        = "terraform-statelock-backend-bucket-dr"
   force_destroy = true
   lifecycle {
-  prevent_destroy = false
+    prevent_destroy = false
   }
 
 }

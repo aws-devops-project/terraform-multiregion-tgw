@@ -1,4 +1,4 @@
-name: Terraform Plan - Dev
+name: Terraform Plan
 #triggered manually via workflow_dispatch, which allows us to runs-on: ubuntu-lates defaults:
            
  

@@ -10,12 +10,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-2" 
+  region = "eu-west-2"
   alias  = "london"
 }
 
 provider "aws" {
-  region = "eu-west-3" 
+  region = "eu-west-3"
   alias  = "paris"
 }
 provider "aws" {

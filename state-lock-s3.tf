@@ -4,16 +4,16 @@ provider "aws" {
 resource "aws_kms_key" "terraform_state" {
   description             = "KMS key for encrypting Terraform state in S3"
   deletion_window_in_days = 7
-  enable_key_rotation = true
-  
+  enable_key_rotation     = true
+
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "terraform-statelock-backend-bucket"
+  bucket        = "terraform-statelock-backend-bucket"
   force_destroy = true
-# ifecycle.prevent_destroy is set to true to prevent accidental deletion of the S3 bucket, which could lead to loss of Terraform state data. This is a safety measure to ensure that the critical infrastructure state information is not lost due to human error or unintended actions.
+  # ifecycle.prevent_destroy is set to true to prevent accidental deletion of the S3 bucket, which could lead to loss of Terraform state data. This is a safety measure to ensure that the critical infrastructure state information is not lost due to human error or unintended actions.
   lifecycle {
-  prevent_destroy = false
+    prevent_destroy = false
   }
 }
 
@@ -25,8 +25,8 @@ resource "aws_s3_bucket_public_access_block" "block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 
-  depends_on = [ aws_s3_bucket.terraform_state ]
-  
+  depends_on = [aws_s3_bucket.terraform_state]
+
 }
 resource "aws_s3_bucket_versioning" "versioning" {
   bucket = aws_s3_bucket.terraform_state.id
@@ -34,7 +34,7 @@ resource "aws_s3_bucket_versioning" "versioning" {
   versioning_configuration {
     status = "Enabled"
   }
-  
+
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
