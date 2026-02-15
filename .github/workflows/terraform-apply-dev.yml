@@ -37,7 +37,7 @@ jobs:
       # For a simple beginner lab, we generate the plan inside the apply workflow
       # (cross-workflow artifact download requires extra API/token handling).
       - name: Terraform plan
-        run: terraform plan -out=tfplan
+        run: terraform plan 
 
       - name: Terraform apply
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve
