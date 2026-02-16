@@ -1,0 +1,59 @@
+name: Terraform multi-Environment Deployment Test
+on:
+    push:
+        branches:
+            - dev
+            - prod
+    pull_request:
+        branches:
+            - prod
+permissions:
+    id-token: write
+    contents: read
+jobs:
+    terraform-deploy:
+        runs-on: ubuntu-latest
+        env:
+            ENVIRONMENT: ${{ github.ref_name }}
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Set Environment Variables
+              run: |
+                if [[ "${GITHUB_REF_NAME}" == "prod" ]]; then
+                    echo "TF_DIR=./prod" >> $GITHUB_ENV
+                    echo "ROLE_ARN=${{ secrets.ROLE_ARN}}" >> $GITHUB_ENV
+                else
+                    echo "TF_DIR=./dev" >> $GITHUB_EVN
+                    echo "ROLE_ARN=${{ secrets.ROLE_ARN}}" >> $GITHUB_ENV
+                fi
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  role-to-assume: ${{ env.ROLE_ARN}}
+                  aws-region: eu-west-2
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform Init
+              run: terraform init
+              working-directory: ${{ env.TF_DIR}}
+            - name: Terraform Validate
+              run: terraform validate
+              working-directory: ${{ env.TF_DIR}}
+            - name: Terraform Plan
+              run: terraform plan 
+              working-directory: ${{ env.TF_DIR}}
+              
+            - name: Terraform Apply (only on push)
+              if: github.event_name == 'push'
+              run: terraform apply -auto-approve
+              working-directory: ${{ env.TF_DIR}}
+
+
+
+
+
+  
