@@ -25,7 +25,7 @@ jobs:
                     echo "TF_DIR=./prod" >> $GITHUB_ENV
                     echo "ROLE_ARN=${{ secrets.ROLE_ARN}}" >> $GITHUB_ENV
                 else
-                    echo "TF_DIR=./dev" >> $GITHUB_EVN
+                    echo "TF_DIR=./dev" >> $GITHUB_ENV
                     echo "ROLE_ARN=${{ secrets.ROLE_ARN}}" >> $GITHUB_ENV
                 fi
 
@@ -46,7 +46,7 @@ jobs:
             - name: Terraform Plan
               run: terraform plan 
               working-directory: ${{ env.TF_DIR}}
-              
+
             - name: Terraform Apply (only on push)
               if: github.event_name == 'push'
               run: terraform apply -auto-approve
