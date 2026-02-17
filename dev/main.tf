@@ -2,7 +2,7 @@
 module "london_vpc_A" {
   source    = "../modules/vpc"
   providers = { aws = aws.london }
-  vpc_name = "london-vpc-a"
+  vpc_name = "dev-london-vpc-a"
   vpc_cidr = "10.100.0.0/16"
   enable_igw = false
   enable_nat = false
@@ -14,7 +14,7 @@ module "london_vpc_A" {
 module "private_SG" {
     source      = "../modules/security-group"
     providers   = { aws = aws.london }
-    Name        = "private-SG-london"
+    Name        = "dev-private-SG-london"
     description = "Private security group for London VPC"
     vpc_id      = module.london_vpc_A.vpc_id
     ingress_rules = [
