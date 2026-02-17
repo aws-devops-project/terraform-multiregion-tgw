@@ -1,6 +1,10 @@
 # Terraform
 .terraform/
 .terraform.lock.hcl
+
+**/.terraform/
+**/.terraform.lock.hcl
+
 # Root state
 terraform.tfstate
 terraform.tfstate.backup
@@ -19,5 +23,25 @@ prod/terraform.tfstate
 prod/terraform.tfstate.backup
 prod/*.tfstate
 prod/*.tfstate.*
+#
+../terraform.tfstate
+../terraform.tfstate.backup
+../*.tfstate
+../*.tfstate.*
+# add production folder terraform state files
+../prod/terraform.tfstate
+../prod/terraform.tfstate.backup
+../prod/*.tfstate
+../prod/*.tfstate.*
+# Production state (inside this repo)
+production/terraform.tfstate
+production/terraform.tfstate.backup
+production/*.tfstate
+production/*.tfstate.*
+# Any top-level folder state files
+*/terraform.tfstate
+*/terraform.tfstate.backup
+*/*.tfstate
+*/*.tfstate.*
 # Local temp files
 del-versions-london.json
