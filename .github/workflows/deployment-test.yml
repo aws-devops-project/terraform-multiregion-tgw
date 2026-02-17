@@ -21,7 +21,7 @@ jobs:
 
             - name: Set Environment Variables
               run: |
-                if [[ "${GITHUB_REF_NAME}" == "prod" ]]; then
+                if [[ "${{ github.base_ref || github.ref_name }}" == "prod" ]]; then
                     echo "TF_DIR=./prod" >> $GITHUB_ENV
                     echo "ROLE_ARN=${{ secrets.ROLE_ARN}}" >> $GITHUB_ENV
                 else
