@@ -23,6 +23,10 @@ jobs:
           with:
             aws-region: eu-west-2
             role-to-assume: arn:aws:iam::590183931718:role/githubaction
+        - name: Debug OIDC token
+          run: |
+            echo "ACTIONS_ID_TOKEN_REQUEST_URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
+            echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
     
         - name: Setup Terraform
           uses: hashicorp/setup-terraform@v3
