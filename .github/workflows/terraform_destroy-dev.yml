@@ -1,4 +1,4 @@
-name: Destroy Terraform
+name: Destroy Terraform Dev
 on:
   workflow_dispatch: {}
 
@@ -6,7 +6,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-    terraform-destroy:
+    terraform-destroy-Dev:
         runs-on: ubuntu-latest
         defaults:
             run:
