@@ -7,7 +7,7 @@ module "london_vpc_A" {
   enable_igw = false
   enable_nat = false
     private_subnets = {
-        "a" = { cidr = "10.100.0.0/16", az = "eu-west-2a" }
+        "a" = { cidr = "10.100.0.0/24", az = "eu-west-2a" }
     }
 }
 
